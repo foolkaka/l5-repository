@@ -439,6 +439,74 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
         return $this->parserResult($model);
     }
 
+    public function findWhereNull($column, $boolean = 'and', $not = false, $columns = ['*'])
+    {
+        $this->applyCriteria();
+        $model = $this->model->whereNull($column, $boolean, $not)->get($columns);
+        $this->resetModel();
+
+        return $this->parserResult($model);
+    }
+
+    public function findWhereNotNull($column, $boolean = 'and', $columns = ['*'])
+    {
+        $this->applyCriteria();
+        $model = $this->model->whereNotNull($column, $boolean)->get($columns);
+        $this->resetModel();
+
+        return $this->parserResult($model);
+    }
+
+    public function findWhereDate($first, $operator = null, $second = null, $boolean = 'and', $columns = ['*'])
+    {
+        $this->applyCriteria();
+        $this->applyScope();
+        $model = $this->model->whereDate($first, $operator, $second, $boolean)->get($columns);
+        $this->resetModel();
+
+        return $this->parserResult($model);
+    }
+
+    public function findWhereMonth($column, $operator, $value = null, $boolean = 'and', $columns = ['*'])
+    {
+        $this->applyCriteria();
+        $this->applyScope();
+        $model = $this->model->whereMonth($column, $operator, $value, $boolean)->get($columns);
+        $this->resetModel();
+
+        return $this->parserResult($model);
+    }
+
+    public function findWhereDay($column, $operator, $value = null, $boolean = 'and', $columns = ['*'])
+    {
+        $this->applyCriteria();
+        $this->applyScope();
+        $model = $this->model->whereDay($column, $operator, $value, $boolean)->get($columns);
+        $this->resetModel();
+
+        return $this->parserResult($model);
+    }
+
+    public function findWhereYear($column, $operator, $value = null, $boolean = 'and', $columns = ['*'])
+    {
+        $this->applyCriteria();
+        $this->applyScope();
+        $model = $this->model->whereYear($column, $operator, $value, $boolean)->get($columns);
+        $this->resetModel();
+
+        return $this->parserResult($model);
+    }
+
+    public function findWhereColumn($first, $operator = null, $second = null, $boolean = 'and', $columns = ['*'])
+    {
+        $this->applyCriteria();
+        $this->applyScope();
+        $model = $this->model->whereColumn($first, $operator, $second, $boolean)->get($columns);
+        $this->resetModel();
+
+        return $this->parserResult($model);
+    }
+
     /**
      * Save a new entity in repository
      *
